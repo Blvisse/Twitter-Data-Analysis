@@ -161,7 +161,7 @@ class TweetDfExtractor:
         location = self.find_location()
         data = zip(created_at, source, text, polarity, subjectivity, lang, fav_count,retweet_count,original_author,  screen_name, follower_count, friends_count,  hashtags, mentions, location)
         df = pd.DataFrame(data=data, columns=columns)
-        df.to_csv('unprocesseds_tweet_data.csv', index=False)
+        # df.to_csv('unprocesseds_tweet_data.csv', index=False)
         if save:
             df.to_csv('processed_tweet_data.csv', index=False)
             print('File Successfully Saved.!!!')
