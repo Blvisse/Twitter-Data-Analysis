@@ -49,7 +49,7 @@ class TweetDfExtractor:
         #get list and read values for text from json dictionary
 
         
-        text = [texts['text'] for texts in self.tweets_list]
+        text = [texts['retweeted_status']['extended_tweet']['full_text'] for texts in self.tweets_list]
 
         return text
        
@@ -100,13 +100,14 @@ class TweetDfExtractor:
         try:
             is_sensitive = [x['possibly_sensitive'] for x in self.tweets_list]
         except KeyError:
-            is_sensitive = ''
+            is_sensitive =  None
 
         return is_sensitive
 
     def find_favourite_count(self)->list:
       
-        favourite_count=[favourites['user']['favourites_count'] for favourites in self.tweets_list]
+        favourite_count=[favourites['favorite_count'] for favourites in self.tweets_list]
+        
 
        
         return favourite_count
