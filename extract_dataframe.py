@@ -47,24 +47,10 @@ class TweetDfExtractor:
         
     def find_full_text(self)->list:
         
-        #get list and read values for text from json dictionary
-
         
-        # text = [texts['retweeted_status']['extended_tweet']['full_text'] for texts in self.tweets_list]
-
-        # return text
         text=[]
 
-        # for texts in self.tweets_list:
-        #     if texts.get('retweeted_status',0)!=0:
-        #         if texts.get('retweeted_status',0).get('extended_tweet',1)!=1:
-        #             text.append(texts.get('retweeted_status',None).get('extended_tweet',None).get('full_text', None) for texts in self.tweets_list)
-
-        #         else:
-        #             text.append(texts.get('retweeted_status',None).get('extended_tweet',''))
-        #     else:
-        #         texts.get('retweeted_status',0)
-
+       
 
         for texts in self.tweets_list:
             try:
@@ -133,12 +119,7 @@ class TweetDfExtractor:
 
     def find_favourite_count(self)->list:
       
-        # favourite_count=[favourites['retweeted_status']['favorite_count'] for favourites in self.tweets_list]
         
-
-       
-        # return favourite_count
-
         
         favourite_count=[]
         
@@ -157,9 +138,7 @@ class TweetDfExtractor:
 
 
     def find_retweet_count(self)->list:
-        # retweet_count = [retweets['retweeted_status']['retweet_count'] for retweets in self.tweets_list]
-
-        # return retweet_count
+       
 
         retweet_count=[]
         for retweets in self.tweets_list:
@@ -233,7 +212,7 @@ if __name__ == "__main__":
     # required column to be generated you should be creative and add more features
     columns = ['created_at', 'source', 'original_text','clean_text', 'sentiment','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
     'original_author', 'screen_count', 'followers_count','friends_count', 'hashtags', 'user_mentions', 'place', 'place_coord_boundaries']
-    _, tweet_list = read_json(r"data\covid19.json")
+    _, tweet_list = read_json("data/covid19.json")
     tweet = TweetDfExtractor(tweet_list)
     tweet_df = tweet.get_tweet_df() 
 
